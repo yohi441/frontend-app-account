@@ -24,14 +24,15 @@ export const MyHeader = () => {
     const defaultImg = `${lmsBaseUrl}/static/images/profiles/default_30.png`;
     
     const [data, setData] = useState([]);
-    const [avatarImg, setAvatarImg] = useState();
-    
-
-    useEffect(()=> {
-        setData(getAuthenticatedUser());
+    const [avatarImg, setAvatarImg] = useState(() => {
         getAvatar(getAuthenticatedUser().username).then((value) => {
             setAvatarImg(value)
         });
+    });
+    
+
+    useEffect(()=> {
+        setData(getAuthenticatedUser()); 
         
     },[data]);
 
